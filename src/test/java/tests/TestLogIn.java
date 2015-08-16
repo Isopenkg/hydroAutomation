@@ -74,7 +74,7 @@ public class TestLogIn {
         successSignUpPage.signUpSuccessPageAppearanceCheck();
         successSignUpPage.logOut();
     }
-    
+
     @Test
     public void loginWithCompanyNotVerifieduser(){
         LoginPage loginPage = new LoginPage(driver);
@@ -85,7 +85,6 @@ public class TestLogIn {
         successSignUpPage.signUpSuccessPageAppearanceCheck();
         successSignUpPage.logOut();
     }
-
 
     @AfterTest
     public void finishTest() {
