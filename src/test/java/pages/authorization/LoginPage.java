@@ -1,7 +1,6 @@
-package pages;
+package pages.authorization;
 
-import Errors.LoginPageErrors;
-import com.sun.tools.doclint.Entity;
+import errors.LoginPageErrors;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -33,7 +32,7 @@ public class LoginPage extends AbstractPage {
     @FindBy(css = ".form-group.checkbox>span")
     WebElement rememberMycheckboxLable;
 
-    @FindBy(css = ".//*[@id='remember']")
+    @FindBy(xpath = ".//*[@id='remember']")
     WebElement rememberMycheckbox;
 
     @FindBy(css = ".col-xs-6>a")
@@ -63,16 +62,16 @@ public class LoginPage extends AbstractPage {
 
 
     public void apearanceCheck(){
-        Assert.assertEquals(verifyIfElementIsDisplayed(elementsLogo),true,"Elements logo is missing.");
-        Assert.assertEquals(verifyIfElementIsDisplayed(topLabel), true, "Top lable on login is missing.");
-        Assert.assertEquals(verifyIfElementIsDisplayed(rememberMycheckboxLable),true,"Remember my check box is missing.");
-        Assert.assertEquals(verifyIfElementIsDisplayed(forgotPasswordLink),true,"Forgot password link is missing.");
-        Assert.assertEquals(verifyIfElementIsDisplayed(loginDialog),true,"Login dialo is missing.");
-        Assert.assertEquals(verifyIfElementIsDisplayed(emailField),true,"Email field is missing.");
-        Assert.assertEquals(verifyIfElementIsDisplayed(passwordField),true,"Password field is missing.");
-        Assert.assertEquals(verifyIfElementIsDisplayed(loginButton),true,"Log in button is missing.");
-        Assert.assertEquals(verifyIfElementIsDisplayed(signUpLink),true,"Sign Up link is missing.");
-        Assert.assertEquals(verifyIfElementIsDisplayed(rememberMycheckbox),true,"Check box is Missing.");
+        Assert.assertEquals(verifyIfElementIsDisplayed(elementsLogo),true,"Elements logo is missing.Log In Page");
+        Assert.assertEquals(verifyIfElementIsDisplayed(topLabel), true, "Top lable on login is missing.Log In Page");
+        Assert.assertEquals(verifyIfElementIsDisplayed(rememberMycheckboxLable),true,"Remember my check box is missing.Log In Page");
+        Assert.assertEquals(verifyIfElementIsDisplayed(forgotPasswordLink),true,"Forgot password link is missing.Log In Page");
+        Assert.assertEquals(verifyIfElementIsDisplayed(loginDialog),true,"Login dialo is missing.Log In Page");
+        Assert.assertEquals(verifyIfElementIsDisplayed(emailField),true,"Email field is missing.Log In Page");
+        Assert.assertEquals(verifyIfElementIsDisplayed(passwordField),true,"Password field is missing.Log In Page");
+        Assert.assertEquals(verifyIfElementIsDisplayed(loginButton),true,"Log in button is missing.Log In Page");
+        Assert.assertEquals(verifyIfElementIsDisplayed(signUpLink),true,"Sign Up link is missing.Log In Page");
+        Assert.assertEquals(verifyIfElementIsDisplayed(rememberMycheckbox),true,"Check box is Missing.Log In Page");
         logInfo("1.Initial appearance pass. All elements present");
     }
 
@@ -137,6 +136,7 @@ public class LoginPage extends AbstractPage {
     public void makeLoginWithUser(User user){
         emailField.sendKeys(user.getEmail());
         passwordField.sendKeys(user.getPassword());
+        loginButton.click();
     }
 
 }
