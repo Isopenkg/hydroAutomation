@@ -1,4 +1,4 @@
-package Errors;
+package errors;
 
 /**
  * Created by QaMac on 8/16/15.
