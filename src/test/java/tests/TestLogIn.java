@@ -1,11 +1,13 @@
 package tests;
 
+import dataForTests.UserStages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import pages.LoginPage;
+import pages.authorization.LoginPage;
+import pages.authorization.SuccessSignUpPage;
 
 import java.util.concurrent.TimeUnit;
 
@@ -60,6 +62,28 @@ public class TestLogIn {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.clearDataInFields();
         loginPage.loginWithNotExistingAccount();
+    }
+
+    @Test
+    public void loginWithPublicNotVerifiedUser(){
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.clearDataInFields();
+        UserStages userStages = new UserStages();
+        loginPage.makeLoginWithUser(userStages.publicNotConfirmedUser());
+        SuccessSignUpPage successSignUpPage = new SuccessSignUpPage(driver);
+        successSignUpPage.signUpSuccessPageAppearanceCheck();
+        successSignUpPage.logOut();
+    }
+    
+    @Test
+    public void loginWithCompanyNotVerifieduser(){
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.clearDataInFields();
+        UserStages userStages = new UserStages();
+        loginPage.makeLoginWithUser(userStages.companyUserNotConfimed());
+        SuccessSignUpPage successSignUpPage = new SuccessSignUpPage(driver);
+        successSignUpPage.signUpSuccessPageAppearanceCheck();
+        successSignUpPage.logOut();
     }
 
 
