@@ -4,6 +4,8 @@ import errors.LoginPageErrors;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utils.AbstractPage;
 import utils.User;
@@ -20,7 +22,7 @@ public class LoginPage extends AbstractPage {
     @FindBy(css = ".dialog-one>h3")
     WebElement topLabel;
 
-    @FindBy(css = ".dialog-one")
+    @FindBy(css = ".dialog-o")
     WebElement loginDialog;
 
     @FindBy(xpath = ".//*[@name='email']")
@@ -100,7 +102,8 @@ public class LoginPage extends AbstractPage {
         passwordField.sendKeys("123456");
         loginButton.click();
 
-        waitForElement(200,loginPageServerErrors);
+        wait = new WebDriverWait(driver,30);
+        wait.until(ExpectedConditions.textToBePresentInElement(loginPageServerErrors,errors.InvalidEmailAddresError));
 
         Assert.assertEquals(verifyIfElementIsDisplayed(loginPageServerErrors),true,"Login page server error are missing.Invalid e-mail");
         Assert.assertEquals(loginPageServerErrors.getText(),errors.InvalidEmailAddresError,"Incorrect server error on invalid e-mail");
@@ -110,8 +113,8 @@ public class LoginPage extends AbstractPage {
         emailField.sendKeys("georgiy.isopenko@techamgic.co");
         passwordField.sendKeys("03123781");
         loginButton.click();
-
-        waitForElement(200,loginPageServerErrors);
+        wait = new WebDriverWait(driver,30);
+        wait.until(ExpectedConditions.textToBePresentInElement(loginPageServerErrors, errors.IvalidCredentialsError));
 
         Assert.assertEquals(verifyIfElementIsDisplayed(loginPageServerErrors),true,"Login page server error are missing.Incorrect password for account");
         Assert.assertEquals(loginPageServerErrors.getText(),errors.IvalidCredentialsError,"Incorrect server error on invalid credentials.");
@@ -127,7 +130,8 @@ public class LoginPage extends AbstractPage {
         passwordField.sendKeys("0773821Fjhsi");
         loginButton.click();
 
-        waitForElement(200,loginPageServerErrors);
+        wait = new WebDriverWait(driver,30);
+        wait.until(ExpectedConditions.textToBePresentInElement(loginPageServerErrors, errors.IvalidCredentialsError));
 
         Assert.assertEquals(verifyIfElementIsDisplayed(loginPageServerErrors),true,"Login page server error are missing.Incorrect password for account");
         Assert.assertEquals(loginPageServerErrors.getText(),errors.IvalidCredentialsError,"Incorrect server error on invalid credentials.");
